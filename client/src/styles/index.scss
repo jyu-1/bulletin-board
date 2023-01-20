@@ -3,3 +3,36 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial,
+        sans-serif;
+
+    background-image: url(../assets/rain.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    main {
+        padding: 50px;
+        flex: 1;
+        overflow-y: hidden;
+    }
+
+    footer {
+        text-align: center;
+        font-weight: bold;
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+}
