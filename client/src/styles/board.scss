@@ -8,7 +8,7 @@ main {
         width: 100%;
         background: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(2rem);
-        border-radius: 25px;
+        border-radius: 15px;
         display: flex;
         flex-direction: column;
         gap: 25px;
@@ -34,6 +34,10 @@ main {
                 &:focus {
                     background-color: rgba(255, 255, 255, 0.75);
                 }
+
+                @media screen and (max-width: 575.98px) {
+                    padding: 10px;
+                }
             }
 
             textarea {
@@ -54,6 +58,10 @@ main {
                 &:active {
                     background-color: rgba(255, 255, 255, 0.85);
                 }
+
+                @media screen and (max-width: 575.98px) {
+                    padding: 10px;
+                }
             }
 
             .message-send {
@@ -67,6 +75,11 @@ main {
                 background-color: rgba(255, 255, 255, 0.5);
                 font-weight: bold;
             }
+        }
+
+        @media screen and (max-width: 575.98px) {
+            padding: 10px;
+            gap: 10px;
         }
     }
 }

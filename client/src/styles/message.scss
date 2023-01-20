@@ -25,15 +25,34 @@
             & > span:first-child {
                 font-weight: bold;
                 font-size: 1.5rem;
+
+                @media screen and (max-width: 575.98px) {
+                    font-size: 1rem;
+                }
             }
 
             & > span:nth-child(2) {
                 color: rgb(50, 50, 50);
+                @media screen and (max-width: 575.98px) {
+                    font-size: 0.75rem;
+                }
             }
         }
 
         & > div:nth-child(2) {
             font-size: 1.25rem;
+
+            @media screen and (max-width: 575.98px) {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    @media screen and (max-width: 575.98px) {
+        gap: 10px;
+
+        .message {
+            margin-right: 10px;
         }
     }
 }

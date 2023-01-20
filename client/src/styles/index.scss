@@ -21,9 +21,17 @@ body {
     height: 100vh;
 
     main {
-        padding: 50px;
+        padding: 25px 50px 50px 50px;
         flex: 1;
         overflow-y: hidden;
+    }
+
+    header {
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 2rem;
+        margin-top: 25px;
     }
 
     footer {
@@ -33,6 +41,16 @@ body {
         a {
             text-decoration: none;
             color: white;
+        }
+    }
+
+    @media screen and (max-width: 575.98px) {
+        main {
+            padding: 10px;
+        }
+
+        header {
+            margin-top: 10px;
         }
     }
 }
