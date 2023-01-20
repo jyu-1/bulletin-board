@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDb = require("./db");
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(logger);
+app.use(cors({ origin: "*" }));
 
 app.use("/api/messages", require("./routes/messagesApi"));
 

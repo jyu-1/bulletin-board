@@ -7,17 +7,21 @@ const getMessage = async (req, res) => {
 };
 
 const postMessage = async (req, res) => {
-    if (!req.body.name || !req.body.message) {
-        res.status(400);
-        throw new Error("Please include both the name and message");
+    try {
+        if (!req.body.name || !req.body.message) {
+            res.status(400);
+            throw new Error("Please include both the name and message");
+        }
+
+        const messages = await Message.create({
+            name: req.body.name,
+            message: req.body.message,
+        });
+
+        res.status(200).json(messages);
+    } catch (error) {
+        res.status(400).json(error.message);
     }
-
-    const messages = await Message.create({
-        name: req.body.name,
-        message: req.body.message,
-    });
-
-    res.status(200).json(messages);
 };
 
 module.exports = {

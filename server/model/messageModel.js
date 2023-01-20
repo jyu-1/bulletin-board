@@ -1,18 +1,22 @@
 const mongoose = require("mongoose");
 
-const messageSchema = mongoose.Schema(
+const messageSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, "Please add your name"],
+            required: [true, "Please enter a name"],
+            minLength: [1, "Please enter a name"],
+            maxLength: [20, "Your name is too long"],
         },
         message: {
             type: String,
-            required: [true, "Please add your message"],
+            required: [true, "Please enter a message"],
+            minLength: [1, "Please enter a message"],
+            maxLength: [300, "Your message is too long"],
         },
     },
     {
-        timestamp: true,
+        timestamps: true,
     }
 );
 
