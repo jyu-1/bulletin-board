@@ -1,8 +1,9 @@
 const express = require("express");
-const path = require("path");
+const dotenv = require("dotenv").config();
+const { errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 3000;
 
 const logger = (req, res, next) => {
     console.log(
@@ -16,6 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(logger);
 
-//app.use(express.static(path.join(__dirname, "public")));
+app.use("/api/messages", require("./routes/messagesApi"));
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));

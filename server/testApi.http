@@ -1,0 +1,11 @@
+get http://localhost:9000/api/messages
+
+###
+
+post http://localhost:9000/api/messages
+Content-Type: application/json
+
+{
+    "name": "john",
+    "message": "hello"
+}
