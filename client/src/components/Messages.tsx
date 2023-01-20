@@ -22,8 +22,10 @@ const Messages = () => {
             {message.map((item) => {
                 return (
                     <div key={item._id} className="message">
-                        <div>{item.name}</div>
-                        <div>{item.createdAt}</div>
+                        <div>
+                            <span>{item.name}</span>
+                            <span>{item.createdAt}</span>
+                        </div>
                         <div>{item.message}</div>
                     </div>
                 );

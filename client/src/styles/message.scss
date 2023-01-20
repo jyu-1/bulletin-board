@@ -1,6 +1,39 @@
 .messages {
     display: flex;
     flex-direction: column;
+    gap: 25px;
     overflow-y: auto;
-    max-height: 100%;
+
+    .message {
+        padding: 10px;
+        background-color: rgba(70, 170, 100, 0.4);
+        margin-right: 25px;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: rgb(55, 155, 85);
+        }
+
+        & > div:first-child {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+
+            & > span:first-child {
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+
+            & > span:nth-child(2) {
+                color: rgb(50, 50, 50);
+            }
+        }
+
+        & > div:nth-child(2) {
+            font-size: 1.25rem;
+        }
+    }
 }

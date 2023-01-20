@@ -18,7 +18,7 @@ body {
 .App {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
 
     main {
         padding: 50px;
@@ -35,4 +35,21 @@ body {
             color: white;
         }
     }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(70, 170, 100);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(55, 155, 85);
 }
