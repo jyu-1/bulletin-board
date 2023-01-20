@@ -1,27 +1,35 @@
+import { useEffect, useState } from "react";
+import "../styles/message.scss";
+
+interface ApiType {
+    _id: React.Key;
+    name: String;
+    createdAt: String;
+    message: String;
+}
+
 const Messages = () => {
+    const [message, setMessage] = useState<ApiType[]>([]);
+
+    useEffect(() => {
+        fetch(process.env.REACT_APP_API_HOST!)
+            .then((res) => res.json())
+            .then((result) => setMessage(result));
+    }, []);
+
     return (
         <div className="messages">
-            {data.map((item) => {
+            {message.map((item) => {
                 return (
-                    <div key={item.id} className="message">
+                    <div key={item._id} className="message">
                         <div>{item.name}</div>
+                        <div>{item.createdAt}</div>
                         <div>{item.message}</div>
-                        <div>{item.time}</div>
                     </div>
                 );
             })}
         </div>
     );
 };
-
-const data = [
-    { id: 0, name: "john", message: "hey there", time: "10pm" },
-    { id: 1, name: "john", message: "hey there", time: "10pm" },
-    { id: 2, name: "john", message: "hey there", time: "10pm" },
-    { id: 3, name: "john", message: "hey there", time: "10pm" },
-    { id: 4, name: "john", message: "hey there", time: "10pm" },
-    { id: 5, name: "john", message: "hey there", time: "10pm" },
-    { id: 6, name: "john", message: "hey there", time: "10pm" },
-];
 
 export default Messages;
