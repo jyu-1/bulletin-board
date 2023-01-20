@@ -1,8 +1,10 @@
-get http://localhost:9000/api/messages
+@hostname = http://localhost:9000
+
+get {{hostname}}/api/messages
 
 ###
 
-post http://localhost:9000/api/messages
+post {{hostname}}/api/messages
 Content-Type: application/json
 
 {
