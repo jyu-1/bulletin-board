@@ -3,9 +3,9 @@ const Messages = () => {
         <div className="messages">
             {data.map((item) => {
                 return (
-                    <div key={item.id}>
+                    <div key={item.id} className="message">
                         <div>{item.name}</div>
-                        <div>{item.messages}</div>
+                        <div>{item.message}</div>
                         <div>{item.time}</div>
                     </div>
                 );
