@@ -10,7 +10,9 @@ connectDb();
 
 const logger = (req, res, next) => {
     console.log(
-        `Request from ${req.protocol}://${req.get("host")}${req.originalUrl}`
+        `Request from ${req.protocol}://${req.get("host")}${req.originalUrl} ${
+            req.method
+        }`
     );
     next();
 };
@@ -19,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(logger);
-app.use(cors({ origin: "*" }));
+app.use(cors());
 
 app.use("/api/messages", require("./routes/messagesApi"));
 
