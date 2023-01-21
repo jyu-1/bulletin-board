@@ -32,6 +32,27 @@ body {
         font-weight: bold;
         font-size: 2rem;
         margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        img {
+            height: 2.5rem;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 0.75;
+            }
+
+            &:active {
+                opacity: 1;
+            }
+
+            &.inactive {
+                filter: hue-rotate(120deg);
+            }
+        }
     }
 
     footer {
