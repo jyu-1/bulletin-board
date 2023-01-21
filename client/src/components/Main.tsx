@@ -1,25 +1,32 @@
 import "../styles/board.scss";
 import Messages from "./Messages";
+import socket from "../Socket";
 
 interface FormData {
-    name: { value: String };
-    message: { value: String };
+    name: { value: string };
+    message: { value: string };
 }
 
 const Main = () => {
-    const submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { name, message } = e.target as typeof e.target & FormData;
-        fetch(process.env.REACT_APP_API_HOST!, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                name: name.value,
-                message: message.value,
-            }),
-        }).then(() => {
-            message.value = "";
+        // fetch(process.env.REACT_APP_API_HOST!, {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({
+        //         name: name.value,
+        //         message: message.value,
+        //     }),
+        // }).then(() => {
+        //     message.value = "";
+        // });
+
+        await socket.emit("send_message", {
+            name: name.value,
+            message: message.value,
         });
+        message.value = "";
     };
 
     return (

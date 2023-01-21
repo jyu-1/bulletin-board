@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/message.scss";
+import socket from "../Socket";
 
 interface ApiType {
     _id: React.Key;
@@ -15,7 +16,24 @@ const Messages = () => {
     useEffect(() => {
         fetch(process.env.REACT_APP_API_HOST!)
             .then((res) => res.json())
-            .then((result) => setMessage(result));
+            .then((result) => setMessage(result.reverse()));
+    }, []);
+
+    useEffect(() => {
+        function datata(data: {
+            _id: React.Key;
+            name: string;
+            message: string;
+            createdAt: string;
+        }) {
+            setMessage((prev) => [...prev, data]);
+        }
+
+        socket.on("receive_message", datata);
+
+        return () => {
+            socket.off("receive_message", datata);
+        };
     }, []);
 
     useEffect(() => {
