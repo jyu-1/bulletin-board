@@ -14,7 +14,7 @@ interface ClientToServerEvents {
 }
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
-    "http://localhost:9000"
+    process.env.REACT_APP_API_HOST!
 );
 
 export default socket;

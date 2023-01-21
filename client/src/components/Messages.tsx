@@ -14,12 +14,6 @@ const Messages = () => {
     const lastMessage = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_HOST!)
-            .then((res) => res.json())
-            .then((result) => setMessage(result.reverse()));
-    }, []);
-
-    useEffect(() => {
         function datata(data: {
             _id: React.Key;
             name: string;
@@ -28,6 +22,10 @@ const Messages = () => {
         }) {
             setMessage((prev) => [...prev, data]);
         }
+
+        fetch(process.env.REACT_APP_API_HOST_MESSAGES!)
+            .then((res) => res.json())
+            .then((result) => setMessage(result.reverse()));
 
         socket.on("receive_message", datata);
 

@@ -10,11 +10,11 @@ interface FormData {
 
 const Main = () => {
     const myFormRef = useRef<HTMLFormElement>(null);
-    const submitMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    const submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { name, message } = e.target as typeof e.target & FormData;
 
-        await socket.emit("send_message", {
+        socket.emit("send_message", {
             name: name.value,
             message: message.value,
         });
@@ -37,11 +37,7 @@ const Main = () => {
             <div className="bulletin">
                 <Messages />
                 <hr />
-                <form
-                    className="input"
-                    onSubmit={submitMessage}
-                    ref={myFormRef}
-                >
+                <form onSubmit={submitMessage} ref={myFormRef}>
                     <input
                         type="text"
                         name="name"
