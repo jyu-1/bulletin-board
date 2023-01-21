@@ -1,7 +1,7 @@
 const Message = require("../model/messageModel");
 
 const getMessage = async (req, res) => {
-    const messages = await Message.find();
+    const messages = await Message.find().sort({ createdAt: -1 }).limit(25);
 
     res.status(200).json(messages);
 };
