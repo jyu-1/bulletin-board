@@ -26,11 +26,15 @@ io.on("connection", (socket) => {
     console.log(`${socket.id} user connected`);
 
     socket.on("send_message", async (data) => {
-        const messages = await Message.create({
-            name: data.name,
-            message: data.message,
-        });
-        io.emit("receive_message", messages);
+        try {
+            const messages = await Message.create({
+                name: data.name,
+                message: data.message,
+            });
+            io.emit("receive_message", messages);
+        } catch (error) {
+            console.log(error.message);
+        }
     });
 
     socket.on("disconnect", () => {
