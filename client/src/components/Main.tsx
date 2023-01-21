@@ -1,6 +1,7 @@
 import "../styles/board.scss";
 import Messages from "./Messages";
 import socket from "../Socket";
+import { useRef } from "react";
 
 interface FormData {
     name: { value: string };
@@ -8,19 +9,10 @@ interface FormData {
 }
 
 const Main = () => {
+    const myFormRef = useRef<HTMLFormElement>(null);
     const submitMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { name, message } = e.target as typeof e.target & FormData;
-        // fetch(process.env.REACT_APP_API_HOST!, {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //         name: name.value,
-        //         message: message.value,
-        //     }),
-        // }).then(() => {
-        //     message.value = "";
-        // });
 
         await socket.emit("send_message", {
             name: name.value,
@@ -29,12 +21,27 @@ const Main = () => {
         message.value = "";
     };
 
+    const onEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter" && e.shiftKey === false) {
+            e.preventDefault();
+            if (myFormRef.current) {
+                myFormRef.current.dispatchEvent(
+                    new Event("submit", { cancelable: true, bubbles: true })
+                );
+            }
+        }
+    };
+
     return (
         <main>
             <div className="bulletin">
                 <Messages />
                 <hr />
-                <form className="input" onSubmit={submitMessage}>
+                <form
+                    className="input"
+                    onSubmit={submitMessage}
+                    ref={myFormRef}
+                >
                     <input
                         type="text"
                         name="name"
@@ -50,6 +57,7 @@ const Main = () => {
                             required
                             minLength={1}
                             maxLength={500}
+                            onKeyDown={onEnterPress}
                         />
                         <button type="submit">Send</button>
                     </div>
