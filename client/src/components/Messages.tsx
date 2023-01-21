@@ -42,22 +42,29 @@ const Messages = () => {
 
     return (
         <div className="messages">
-            {message.map((item) => {
-                return (
-                    <div key={item._id} className="message">
-                        <div>
-                            <span>{item.name}</span>
-                            <span>
-                                {new Date(Date.parse(item.createdAt))
-                                    .toString()
-                                    .slice(4, 21)}
-                            </span>
+            {message.length !== 0 ? (
+                message.map((item) => {
+                    return (
+                        <div key={item._id} className="message">
+                            <div>
+                                <span>{item.name}</span>
+                                <span>
+                                    {new Date(Date.parse(item.createdAt))
+                                        .toString()
+                                        .slice(4, 21)}
+                                </span>
+                            </div>
+                            <div>{item.message}</div>
+                            <div ref={lastMessage} />
                         </div>
-                        <div>{item.message}</div>
-                        <div ref={lastMessage} />
-                    </div>
-                );
-            })}
+                    );
+                })
+            ) : (
+                <div className="loading">
+                    <div>Waking up the backend...</div>
+                    <div>This can take up to 20 seconds.</div>
+                </div>
+            )}
         </div>
     );
 };

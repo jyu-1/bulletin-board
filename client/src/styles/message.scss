@@ -4,6 +4,20 @@
     gap: 25px;
     overflow-y: auto;
 
+    .loading {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 50px;
+
+        @media screen and (max-width: 575.98px) {
+            font-size: 1.5rem;
+            margin: 10px;
+        }
+    }
+
     .message {
         padding: 10px;
         background-color: rgba(70, 170, 100, 0.4);
